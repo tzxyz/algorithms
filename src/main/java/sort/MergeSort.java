@@ -30,17 +30,8 @@ public class MergeSort {
         int rightIndex = middle + 1;
 
         while (leftIndex <= middle && rightIndex <= end) {
-
-            try {
-                if (elements[leftIndex] <= elements[rightIndex]) {
-                    templates[tmpIndex++] = elements[leftIndex++];
-                } else {
-                    templates[tmpIndex++] = elements[rightIndex++];
-                }
-            } catch (Exception e) {
-                System.out.println(String.format("left: %s, middle: %s, || right: %s, end: %s", leftIndex, rightIndex, middle, end));
-                System.out.println(Arrays.toString(elements));
-            }
+            if (elements[leftIndex] <= elements[rightIndex]) templates[tmpIndex++] = elements[leftIndex++];
+            else templates[tmpIndex++] = elements[rightIndex++];
         }
 
         while (leftIndex <= middle) templates[tmpIndex++] = elements[leftIndex++];
