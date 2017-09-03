@@ -6,53 +6,45 @@ public class MergeSort {
 
 
     public static void mergeSort(Integer[] elements) {
-        mergeSort(elements, 0, elements.length - 1);
+        mergeSort(elements, new Integer[elements.length], 0, elements.length - 1);
     }
 
-    private static void mergeSort(Integer[] elements, int start, int end) {
+    private static void mergeSort(Integer[] elements, Integer tmp[], int start, int end) {
 
-        System.out.println(String.format("start: %s, end: %s", start, end));
+        if (start < end) {
+            int middle = (end + start) / 2;
 
-        if (end - start <= 1) return;
-        else {
-            if (elements.length > 0) {
-                // 不包含尾
-//                System.out.println(Arrays.toString(Arrays.copyOfRange(elements, start, end + 1)));
-            }
+            mergeSort(elements, tmp, start, middle);
+            mergeSort(elements, tmp, middle + 1, end);
+
+            merge(elements, tmp, start, middle, end);
         }
-
-        int middle = (end - start) / 2;
-
-        mergeSort(elements, start, middle);
-        mergeSort(elements, middle + 1, end);
-
-        merge(elements, start, middle, end);
     }
 
-    private static void merge(Integer[] elements, int start, int middle, int end) {
-        // 分配一个新数组
-        Integer[] templates = new Integer[elements.length];
+    private static void merge(Integer[] elements, Integer[] templates, int start, int middle, int end) {
 
-        int m = middle + 1;
-        int t = start;
-        int c = start;
+        System.out.println(String.format("start: %s, middle: %s, end: %s, elements: %s, templates: %s", start, middle, end, Arrays.toString(elements), Arrays.toString(templates)));
 
-        while (start <= middle && middle + 1 <= end) {
+        int tmpIndex = start;
+        int leftIndex = start;
+        int rightIndex = middle + 1;
+
+        while (leftIndex <= middle && rightIndex <= end) {
+
             try {
-                if (elements[start] - elements[m] < 0) {
-                    templates[t++] = elements[start++];
+                if (elements[leftIndex] <= elements[rightIndex]) {
+                    templates[tmpIndex++] = elements[leftIndex++];
                 } else {
-                    templates[t++] = elements[m++];
+                    templates[tmpIndex++] = elements[rightIndex++];
                 }
             } catch (Exception e) {
-                System.out.println(e.getMessage());
-                System.out.println(String.format("%s, %s, %s", start, middle, end));
+                System.out.println(String.format("left: %s, middle: %s, || right: %s, end: %s", leftIndex, rightIndex, middle, end));
+                System.out.println(Arrays.toString(elements));
             }
         }
 
-        while (start <= middle) templates[t++] = elements[start++];
-        while (m <= end) templates[t++] = elements[m ++];
-
-        System.arraycopy(templates, 0, elements, 0, elements.length);
+        while (leftIndex <= middle) templates[tmpIndex++] = elements[leftIndex++];
+        while (rightIndex <= end) templates[tmpIndex++] = elements[rightIndex++];
+        System.arraycopy(templates, start, elements, start, rightIndex - start);
     }
 }

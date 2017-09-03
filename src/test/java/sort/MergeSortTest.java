@@ -10,17 +10,18 @@ import java.util.stream.IntStream;
 
 public class MergeSortTest {
 
-    Integer[] ints = new Integer[10];
+    private Integer[] ints = new Integer[30];
 
     @Before
     public void init() {
-        IntStream.range(0, 10).map(i -> new Random().nextInt(10)).boxed().collect(Collectors.toList()).toArray(ints);
+        IntStream.range(0, 30).map(i -> new Random().nextInt(100)).boxed().collect(Collectors.toList()).toArray(ints);
     }
 
     @Test
-    public void testShellSort() {
+    public void testMergeSort() {
         System.out.println(Arrays.toString(ints));
         MergeSort.mergeSort(ints);
         System.out.println(Arrays.toString(ints));
     }
+
 }
