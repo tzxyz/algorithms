@@ -1,8 +1,8 @@
 package sort;
 
-public class BubbleSort {
+public class SelectionSort {
 
-    public static <T extends Comparable<T>> void bubbleSort(T[] elements) {
+    public static <T extends Comparable<T>> void selectionSort(T[] elements) {
 
         for (int i = 0; i < elements.length; i ++) {
             for (int j = i + 1; j < elements.length; j ++) {

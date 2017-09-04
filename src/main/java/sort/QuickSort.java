@@ -8,6 +8,11 @@ public class QuickSort {
         pivot(elements);
     }
 
+    public static <T extends Comparable<T>> void quickSort(T[] elements, int start, int end) {
+        if (elements.length < 2) return;
+//        elements
+    }
+
     private static <T extends Comparable<T>> void pivot(T[] element) {
         int start = 0;
         int end = element.length - 1;

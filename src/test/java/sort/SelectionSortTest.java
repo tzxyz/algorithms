@@ -8,7 +8,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class BubbleSortTest {
+public class SelectionSortTest {
 
     Integer[] ints = new Integer[1000];
 
@@ -18,9 +18,9 @@ public class BubbleSortTest {
     }
 
     @Test
-    public void testBubbleSort() {
+    public void testSelectionSort() {
         System.out.println(Arrays.toString(ints));
-        BubbleSort.bubbleSort(ints);
+        SelectionSort.selectionSort(ints);
         System.out.println(Arrays.toString(ints));
     }
 }
