@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.Random;
 import java.util.function.Supplier;
+import java.util.stream.IntStream;
 
 public class QueueTest {
 
@@ -13,27 +14,17 @@ public class QueueTest {
 
     @Before
     public void init() {
-        queue.enqueue(generator.get());
-        queue.enqueue(generator.get());
-        queue.enqueue(generator.get());
-        queue.enqueue(generator.get());
-        queue.enqueue(generator.get());
+        IntStream.range(0, 100).forEach(i -> {
+            queue.enqueue(generator.get());
+            System.out.println(queue);
+        });
     }
 
     @Test
     public void test() {
-        
-        Integer i = queue.dequeue();
-        System.out.println(i);
-        i = queue.dequeue();
-        System.out.println(i);
-        i = queue.dequeue();
-        System.out.println(i);
-        i = queue.dequeue();
-        System.out.println(i);
-        i = queue.dequeue();
-        System.out.println(i);
-        
-        System.out.println(queue.toString());
+        IntStream.range(0, 100).forEach(i -> {
+            queue.dequeue();
+            System.out.println(queue);
+        });
     }
 }

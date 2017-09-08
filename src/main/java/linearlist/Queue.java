@@ -6,7 +6,6 @@ public class Queue<E> {
     private transient Node<E> tail;
 
     private static class Node<E> {
-        Node<E> prev;
         Node<E> next;
         E value;
 
@@ -21,7 +20,9 @@ public class Queue<E> {
             head = new Node<>(e);
             if (tail == null) tail = head;
         } else {
-            tail.next = new Node<>(e);
+            Node<E> node = new Node<>(e);
+            tail.next = node;
+            tail = node;
         }
 
         return true;
@@ -31,9 +32,9 @@ public class Queue<E> {
 
         Node<E> node = head;
 
-        if (node != null && node.next != null) head = head.next;
+        if (node != null) head = head.next;
 
-        return node == null ? null : node.value ;
+        return node == null ? null : node.value;
     }
 
     @Override
